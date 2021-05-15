@@ -1,3 +1,5 @@
+// Adapted from Benney Au's blog post: https://www.pluralsight.com/guides/using-d3.js-inside-a-react-app
+
 import React from 'react'
 import * as d3 from 'd3'
 
