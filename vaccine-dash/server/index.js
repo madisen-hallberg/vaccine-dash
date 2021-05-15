@@ -5,7 +5,9 @@ const app = express()
 const port = 8080
 
 app.get('/api/map/county', (req, res) => {
-    res.send('counties')
+    fs.readFile('./county.geojson', (err, json) => {
+        res.json(JSON.parse(json))
+    })
 })
 
 app.listen(port, () => {
