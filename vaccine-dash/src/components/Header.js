@@ -3,22 +3,24 @@ import About from './logos/About';
 import Home from './logos/Home';
 
 import React from 'react';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import { useHistory, NavLink } from 'react-router-dom';
 
-const Header = () => {
+const Header = props => {
+    const currentRoute = useHistory().location.pathname.toLowerCase();
 
     return (
         <div className = "topnav">     
             <h1 className="bar-item left">Covid-19 Vaccination Tracker</h1>
             <div className="bar-item right">
-                <Link to='/'>
+                <NavLink activeClassName="active" className={"bar-item right"} to='/home'>
                     <Home/>
-                </Link>
+                </NavLink>
             </div>
             <div className = "bar-item right">
-                <Link to='/about'>
+                <NavLink activeClassName ="active" className={"bar-item right"} to='/about'>
                   <About/>
-                </Link>
+                </NavLink>
             </div>
         </div>
     );

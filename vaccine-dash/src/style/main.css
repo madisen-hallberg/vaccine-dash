@@ -31,7 +31,7 @@
     padding-right: 20px;
 }
 
-.active{
+.right.active{
     filter: invert(47%) sepia(59%) saturate(2307%) hue-rotate(195deg) brightness(104%) contrast(114%);
 }
 
