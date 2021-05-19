@@ -3,7 +3,7 @@ import home from '../../assets/home.png';
 
 function Home() {
     return(
-           <img class="logo-main" src={home} alt=""/>
+           <img className="logo home" src={home} alt=""/>
     )
 }
 

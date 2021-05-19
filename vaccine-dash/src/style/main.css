@@ -1,5 +1,40 @@
+/*navbar*/
+.topnav{
+    display: flex;
+    top: 0;
+    width: 100%;
+    overflow: auto;
+    height: auto;
+    padding-top: 5px;
+}
+
+.left{
+    flex: 1 1 200px;
+    text-align: left;
+    font-size: 160%;
+}
+
+.right{
+    text-align: center;
+    align-content: center;
+}
+
+.bar-item{
+    display: inline-block;
+    width: min-content;
+    margin: auto;
+}
+
 .logo{
-    width: 100px;
-    height: 100;
-    
+    width: 35px;
+    height: auto;
+    padding-right: 20px;
+}
+
+.active{
+    filter: invert(47%) sepia(59%) saturate(2307%) hue-rotate(195deg) brightness(104%) contrast(114%);
+}
+
+.right:hover{
+    filter: invert(47%) sepia(59%) saturate(2307%) hue-rotate(195deg) brightness(104%) contrast(114%);
 }

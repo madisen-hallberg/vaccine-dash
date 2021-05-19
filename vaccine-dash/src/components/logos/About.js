@@ -3,7 +3,7 @@ import about from '../../assets/about.png';
 
 function About() {
     return(
-           <img class="logo about" src={about} alt=""/>
+           <img className="logo about" src={about} alt=""/>
     )
 }
 

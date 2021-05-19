@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
 import './App.css';
 
-import Posts from './components/Posts';
+import Header from './components/Header';
+//import Home from './components/home/Homepage';
+import Main from './components/Main';
 
 class App extends Component {
   render(){
     return(
       <div className="App">
-        <h1>COVID-19 Vaccination Tracker</h1>
-        <Posts />
+        <Header />
+        <Main/>
       </div>
     );
   }
