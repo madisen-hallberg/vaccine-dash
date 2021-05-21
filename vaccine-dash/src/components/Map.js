@@ -5,8 +5,8 @@ import e from 'express'
 
 class Map extends Component {
     componentDidMount() {
-        const url = 'http://localhost:8080/api/map/county'
-        fetch(url)
+        const countyMapUrl = 'http://localhost:8080/api/map/county'
+        fetch(countyMapUrl)
             .then(res => res.json())
             .then(data => this.setState({ geoData: data }))
             .catch(err => console.log(err))
