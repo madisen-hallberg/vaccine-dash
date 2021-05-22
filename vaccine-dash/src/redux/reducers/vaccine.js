@@ -12,7 +12,7 @@ const initialState = {
 // TODO: vaccineReducer Unimplemented
 function vaccineReducer(state = initialState, action) {
     switch (action.type) {
-        case 'GET_VACCINES':
+        case 'vaccine/getVaccineData':
             return state
         default:
             return state

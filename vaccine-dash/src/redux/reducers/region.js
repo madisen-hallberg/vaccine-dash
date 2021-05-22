@@ -1,6 +1,6 @@
 function regionReducer(state = {activeRegion: 'OR'}, action) {
     switch (action.type) {
-        case 'CHANGE_REGION':
+        case 'region/changeRegion':
             return {
                 // copy state
                 ...state,
