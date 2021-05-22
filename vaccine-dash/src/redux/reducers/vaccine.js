@@ -1,8 +1,4 @@
-
-
-// TODO: create .env file
-const API_KEY = '38647fa3b7c14582bc7fc0853e42dd3d'
-const url = `https://api.covidactnow.org/v2/states.json?apiKey=${API_KEY}`
+const url = `https://api.covidactnow.org/v2/states.json?apiKey=${process.env.REACT_APP_COVIDACTNOW_API_KEY}`
 
 const initialState = {
     vaccines: [],
