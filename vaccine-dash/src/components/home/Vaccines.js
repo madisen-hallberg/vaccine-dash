@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+const url  = `https://api.covidactnow.org/v2/states.json?apiKey=${process.env.REACT_APP_COVIDACTNOW_API_KEY}`
 class Vaccines extends Component{
     constructor(props){
         super(props);
@@ -9,7 +10,7 @@ class Vaccines extends Component{
     }
 
     componentWillMount(){
-        fetch('https://api.covidactnow.org/v2/states.json?apiKey=38647fa3b7c14582bc7fc0853e42dd3d')
+        fetch(url)
         .then(res => res.json())
         .then(data => this.setState({vaccines: data}));
     }
