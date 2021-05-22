@@ -1,34 +1,34 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 
-const url  = `https://api.covidactnow.org/v2/states.json?apiKey=${process.env.REACT_APP_COVIDACTNOW_API_KEY}`
-class Vaccines extends Component{
-    constructor(props){
-        super(props);
-        this.state ={
-            vaccines: []
-        }
-    }
+const covidactnow_url  = `https://api.covidactnow.org/v2/states.json?apiKey=${process.env.REACT_APP_COVIDACTNOW_API_KEY}`
 
-    componentWillMount(){
-        fetch(url)
-        .then(res => res.json())
-        .then(data => this.setState({vaccines: data}));
-    }
+function Vaccines() {
+    let [vaccines, setVaccines] = useState([])
 
-    render(){
-        const postItems = this.state.vaccines.map(vaccines => (
-            <div key={vaccines.id}>
-                <h3>{vaccines.state}</h3>
-                <p>{vaccines.actuals.vaccinesDistributed}</p>
-            </div>
-        ));
-        return(
-            <div>
-                <h1>Vaccines Distributed</h1>
-                {postItems}
-            </div>
-        );
-    }
+    useEffect(() => {
+        fetch(covidactnow_url)
+            .then(res => res.json())
+            .then(data => setVaccines(data))
+            .catch(err => console.log(err))
+    })
+
+    const postItems = vaccines.map(item => <Vaccine key={item.id} {...item} />);
+
+    return(
+        <div>
+            <h1>Vaccines Distributed</h1>
+            {postItems}
+        </div>
+    );
+}
+
+function Vaccine({ state, actuals }) {
+    return (
+        <div>
+            <h3>{state}</h3>
+            <p>{actuals.vaccinesDistributed}</p>
+        </div>
+    )
 }
 
 export default Vaccines;
