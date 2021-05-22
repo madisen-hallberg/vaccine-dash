@@ -3,12 +3,17 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { HashRouter } from 'react-router-dom';
+import { Provider } from 'react-redux'
+import { createStore } from 'redux'
+// import allReducers from './redux/reducers'
+import reducer from './redux/reducers/region'
+
+const store = createStore(reducer)
 
 ReactDOM.render(
-  <HashRouter>
+  <Provider store={store}>
     <App />
-  </HashRouter>,
+  </Provider>,
   document.getElementById('root')
 );
 
