@@ -1,8 +1,12 @@
-// Think of redux actions as an event that describes something
-// that happened in the application.
-// 
-// Actions are plain JS objects w/ a "type" field
-
+/*
+ * Think of redux actions as an event that describes something
+ * that happened in the application.
+ * 
+ * Actions are plain JS objects w/ a 'type' field, and optionally,
+ * additional information in 'payload' (object or primitive values)
+ * 
+ * Below are action creators (functions that return action objects)
+ */
 
 
 const changeRegion = (selection) => ({
