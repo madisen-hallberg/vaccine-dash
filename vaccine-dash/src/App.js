@@ -1,19 +1,19 @@
-import React, { Component } from 'react';
+import React from 'react';
+
 import './App.css';
 
 import Header from './components/Header';
-//import Home from './components/home/Homepage';
 import Main from './components/Main';
+import { HashRouter } from 'react-router-dom';
 
-class App extends Component {
-  render(){
-    return(
+
+export default function App() {
+  return(
+    <HashRouter>
       <div className="App">
         <Header />
         <Main/>
       </div>
-    );
-  }
+    </HashRouter>
+  );
 }
-
-export default App;

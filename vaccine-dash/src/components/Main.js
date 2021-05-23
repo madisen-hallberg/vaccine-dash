@@ -1,6 +1,6 @@
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
-import Home from './home/Homepage'
+import Home from './Homepage'
 import About from './about/Aboutpage'
 
 const Main = () => (
