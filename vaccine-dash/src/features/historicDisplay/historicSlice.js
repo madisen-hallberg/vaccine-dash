@@ -35,7 +35,6 @@ const historicSlice = createSlice({
 })
 
 export default historicSlice.reducer
-
 // Selectors
 export const allHistoricData = (state) => state.historic.data
 export const historicByState = (state, region) => state.historic.data.filter(d => d.state === region)
