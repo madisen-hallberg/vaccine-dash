@@ -1,9 +1,6 @@
 const url = `https://api.covidactnow.org/v2/states.json?apiKey=${process.env.REACT_APP_COVIDACTNOW_API_KEY}`
 
-const initialState = {
-    vaccines: [],
-    activeRegion: ''
-}
+const initialState = { vaccines: [] }
 
 // TODO: vaccineReducer Unimplemented
 function vaccineReducer(state = initialState, action) {
