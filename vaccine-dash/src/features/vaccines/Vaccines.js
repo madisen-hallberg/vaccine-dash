@@ -27,11 +27,11 @@ function Vaccines() {
     );
 }
 
-function Vaccine({ id, state, actuals }) {
+function Vaccine({ id, name, store_count }) {
     return (
         <div key={id}>
-            <h3>{state}</h3>
-            <p>{actuals.vaccinesDistributed}</p>
+            <h3>{name}</h3>
+            <p>{store_count}</p>
         </div>
     )
 }

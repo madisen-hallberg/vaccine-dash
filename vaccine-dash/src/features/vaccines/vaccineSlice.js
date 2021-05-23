@@ -6,7 +6,7 @@ const initialState = {
     status: 'pending',
     error: null
 }
-const url = `https://api.covidactnow.org/v2/states.json?apiKey=${process.env.REACT_APP_COVIDACTNOW_API_KEY}`
+const url = `https://www.vaccinespotter.org/api/v0/states.json`
 
 export const fetchVaccineData = createAsyncThunk('vaccines/fetchData', async () => {
     const res = await fetch(url)

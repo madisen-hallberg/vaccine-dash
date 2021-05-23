@@ -3,7 +3,24 @@ import { Map } from 'react-leaflet'
 
 import { useSelector } from 'react-redux'
 import { allVaccineData } from '../features/vaccines/vaccineSlice'
+import geojson from './GeoJSON';
 
+
+
+  const ChorMap = () => {
+
+    const vaccineData = useSelector(allVaccineData);
+
+    //clean up vaccine data.
+    //omit any us territories outside of map
+    let vaccineDataFiltered = vaccineData.filter(function(region){
+      return region.state !== "MP";
+    })
+    vaccineDataFiltered = vaccineDataFiltered.filter(function(region){
+      return region.state !== "PR";
+    })
+
+    console.log(vaccineDataFiltered);
 
     const style = {
       fillColor: '#F28F3B',
@@ -15,28 +32,11 @@ import { allVaccineData } from '../features/vaccines/vaccineSlice'
   }
 
 
-  const ChorMap = () => {
 
-    const vaccineData = useSelector(allVaccineData);
-    
-    console.log(vaccineData);
-
-    //clean up vaccine data.
-    //omit any us territories outside of map
-    let vaccineDataFiltered = vaccineData.filter(function(region){
-      return region.state !== "MP";
-    })
-
-    vaccineDataFiltered = vaccineDataFiltered.filter(function(region){
-      return region.state !== "PR";
-    })
-
-    console.log(vaccineDataFiltered);
-
-
-    return(<Map>
+    return(
+    <Map>
       <Choropleth
-        data={{type: 'FeatureCollection', features: vaccineData}}
+        data={{type: 'FeatureCollection', features: geojson.features}}
         valueProperty={(feature) => feature.state}
         visible={(feature) => feature.state}
         scale={['#b3cde0', '#011f4b']}
@@ -46,7 +46,8 @@ import { allVaccineData } from '../features/vaccines/vaccineSlice'
         onEachFeature={(feature, layer) => layer.bindPopup(feature.properties.label)}
         ref={(el) => this.choropleth = el.leafletElement}
       />
-    </Map>)
+    </Map>
+    )
   }
 
   export default ChorMap
