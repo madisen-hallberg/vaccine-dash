@@ -1,13 +1,14 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { selectActiveRegion} from '../regionSelector/regionSlice'
+// import { selectActiveRegion } from '../regionSelector/regionSlice'
 import { allVaccineData, fetchVaccineData } from './vaccineSlice'
 
 
 function Vaccines() {
     const dispatch = useDispatch()
-    const region = useSelector(selectActiveRegion)
+    // TODO: filter by region
+    // const region = useSelector(selectActiveRegion)
     const vaccineData = useSelector(allVaccineData)
 
     const loadStatus = useSelector(state => state.vaccines.status)

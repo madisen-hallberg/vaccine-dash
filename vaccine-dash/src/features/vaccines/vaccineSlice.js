@@ -13,6 +13,13 @@ export const fetchVaccineData = createAsyncThunk('vaccines/fetchData', async () 
     return res.json()
 })
 
+/* 
+ * Steps for async thunks (see: vaccineSlice.extraReducers above)
+ * 1) dispatch "start" action before the request (track loading state)
+ * 2) async request is made
+ * 3) async logic dispatches either "success" action containing result data, or "failure" action containing details
+ * 4) reducer clears the loading state
+ */
 export const vaccineSlice = createSlice({
     name: 'vaccines',
     initialState,
@@ -39,22 +46,3 @@ export default vaccineSlice.reducer
 // Selectors
 export const allVaccineData = state => state.vaccines.data
 export const vaccineDataByState = (state, USState) => state.vaccines.data.filter(d => d.state === USState)
-
-
-/* Steps for async thunks (see: vaccineSlice.extraReducers above)
- * 1) dispatch "start" action before the request (track loading state)
- * 2) async request is made
- * 3) async logic dispatches either "success" action containing result data, or "failure" action containing details
- * 4) reducer clears the loading state
- */
-const fetchData = () => {
-    return async (dispatch, getState) => {
-        try {
-            const res = await fetch(url)
-            const data = await res.json()
-            dispatch(vaccineSlice.actions.getData)
-        } catch (err) {
-            console.log(err)
-        }
-    }
-}
