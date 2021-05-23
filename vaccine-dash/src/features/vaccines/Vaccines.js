@@ -1,20 +1,38 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+
+import { selectActiveRegion} from '../regionSelector/regionSlice'
+import { allVaccineData, fetchVaccineData } from './vaccineSlice'
 
 
-function Vaccines({ data }) {
-    const postItems = data.map(item => (
-        <div key={item.id}>
-            <h3>{item.state}</h3>
-            <p>{item.actuals.vaccinesDistributed}</p>
-        </div>
-    ));
+function Vaccines() {
+    const dispatch = useDispatch()
+    const region = useSelector(selectActiveRegion)
+    const vaccineData = useSelector(allVaccineData)
+
+    const loadStatus = useSelector(state => state.vaccines.status)
+
+    useEffect(() => {
+        if (loadStatus === 'pending') {
+            dispatch(fetchVaccineData())
+        }
+    }, [loadStatus, dispatch])
 
     return(
         <div>
             <h1>Vaccines Distributed</h1>
-            {postItems}
+            {vaccineData.map(datum => <Vaccine {...datum} />)}
         </div>
     );
+}
+
+function Vaccine({ id, state, actuals }) {
+    return (
+        <div key={id}>
+            <h3>{state}</h3>
+            <p>{actuals.vaccinesDistributed}</p>
+        </div>
+    )
 }
 
 export default Vaccines;
