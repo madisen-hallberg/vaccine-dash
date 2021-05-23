@@ -1,9 +1,12 @@
-import { createStore } from 'redux'
-import rootReducer from '../redux/reducers'
+// import { createStore } from 'redux'
+import { configureStore } from '@reduxjs/toolkit'
+import regionReducer from '../features/regionSelector/regionSlice'
 
-const store = createStore(
-    rootReducer,
+export default configureStore(
+    {
+        reducer: {
+            region: regionReducer
+        }
+    },
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 )
-
-export default store
