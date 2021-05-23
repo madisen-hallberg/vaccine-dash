@@ -9,7 +9,6 @@ function Home() {
     const covidactnow_url  = `https://api.covidactnow.org/v2/states.json?apiKey=${API_KEY}`
 
     useEffect(() => {
-        setActiveRegion('OR')
         fetch(covidactnow_url)
             .then(res => res.json())
             .then(data => setVaccines(data));
