@@ -12,9 +12,10 @@ export const regionSlice = createSlice({
     }
 })
 
-// Selector functions
-export const selectRegion = state => state.region
 
 export const { setRegion } = regionSlice.actions
 
 export default regionSlice.reducer
+
+// Selector functions
+export const selectActiveRegion = state => state.region

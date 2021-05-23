@@ -4,15 +4,13 @@ import MenuItem from '@material-ui/core/MenuItem'
 import FormControl from '@material-ui/core/FormControl'
 
 import { useSelector, useDispatch } from 'react-redux'
-import { setRegion, selectRegion } from './regionSlice'
+import { setRegion, selectActiveRegion } from './regionSlice'
 
 const regions = [ "AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "DC", "FL", "GA", "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY", "AS", "GU", "MH", "FM", "MP", "PW", "PR", "VI" ]
 
 export default function RegionSelector() {
-    const region = useSelector(selectRegion)
+    const region = useSelector(selectActiveRegion)
     const dispatch = useDispatch()
-
-    console.log(region)
 
     return (
         <FormControl>
