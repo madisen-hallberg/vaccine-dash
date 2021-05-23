@@ -8,6 +8,7 @@ const initialState = {
 }
 const url = `https://www.vaccinespotter.org/api/v0/states.json`
 
+// Thunk (think of it as an action with async logic)
 export const fetchVaccineData = createAsyncThunk('vaccines/fetchData', async () => {
     const res = await fetch(url)
     return res.json()
@@ -38,9 +39,6 @@ export const vaccineSlice = createSlice({
     }
 })
 
-
-// Actions
-export const { getData } = vaccineSlice.actions
 // Reducer
 export default vaccineSlice.reducer
 // Selectors
