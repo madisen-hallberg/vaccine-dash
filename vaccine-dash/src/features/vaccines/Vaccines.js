@@ -19,7 +19,7 @@ function Vaccines() {
         }
     }, [loadStatus, dispatch])
 
-    const body = (loadStatus !== 'pending' ? vaccineData.map(datum => <Vaccine {...datum} />) : <p>Loading...</p>)
+    const body = (loadStatus !== 'pending' ? vaccineData.map(datum => <Vaccine key={datum.id} {...datum} />) : <p>Loading...</p>)
     return(
         <div>
             <h1>Vaccines Distributed</h1>
@@ -28,9 +28,9 @@ function Vaccines() {
     );
 }
 
-function Vaccine({ id, state, actuals }) {
+function Vaccine({ state, actuals }) {
     return (
-        <div key={id}>
+        <div>
             <h3>{state}</h3>
             <p>{actuals.vaccinesDistributed}</p>
         </div>
