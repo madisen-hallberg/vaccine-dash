@@ -19,10 +19,11 @@ function Vaccines() {
         }
     }, [loadStatus, dispatch])
 
+    const body = (loadStatus !== 'pending' ? vaccineData.map(datum => <Vaccine {...datum} />) : <p>Loading...</p>)
     return(
         <div>
             <h1>Vaccines Distributed</h1>
-            {vaccineData.map(datum => <Vaccine {...datum} />)}
+            {body}
         </div>
     );
 }
