@@ -6,7 +6,6 @@ import Vaccines from '../features/vaccines/Vaccines';
 
 function Home() {
     let [vaccines, setVaccines] = useState([])
-    let [activeRegion, setActiveRegion] = useState('OR')
 
     const API_KEY = process.env.REACT_APP_COVIDACTNOW_API_KEY
     const covidactnow_url  = `https://api.covidactnow.org/v2/states.json?apiKey=${API_KEY}`
@@ -19,10 +18,8 @@ function Home() {
 
     return(
         <div className="Homepage">
-            <RegionSelector
-                value={activeRegion}
-                setActiveRegion={setActiveRegion} />
-            <Vaccines data={vaccines} region={activeRegion} />
+            <RegionSelector />
+            <Vaccines data={vaccines} />
         </div>
     );
 }
