@@ -3,12 +3,11 @@ import { createSlice } from '@reduxjs/toolkit'
 export const regionSlice = createSlice({
     name: 'region',
     initialState: {
-        code: 'OR',
-        label: 'Oregon'
+        code: 'OR'
     },
     reducers: {
         setRegion: (state, action) => {
-            state.region.code = action.payload
+            state.code = action.payload
         }
     }
 })
