@@ -14,7 +14,7 @@ function Home() {
         fetch(covidactnow_url)
             .then(res => res.json())
             .then(data => setVaccines(data));
-    })
+    }, [])
 
     return(
         <div className="Homepage">
