@@ -1,5 +1,4 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { fetchVaccineData } from '../vaccines/vaccineSlice'
 
 const initialState = {
     data: [],
@@ -28,7 +27,7 @@ const historicSlice = createSlice({
             state.status = 'succeeded'
             state.data = action.payload
         },
-        [fetchVaccineData.rejected]: (state, action) => {
+        [fetchHistoricData.rejected]: (state, action) => {
             state.status = 'failed'
             state.error = action.payload
         }
@@ -38,3 +37,5 @@ const historicSlice = createSlice({
 
 // Selectors
 export const historicByState = (state, region) => state.historic.data.filter(d => d.state === region)
+
+export default historicSlice.reducer
