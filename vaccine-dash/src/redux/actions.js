@@ -10,10 +10,8 @@
 
 // Action creators
 const changeRegion = (selection) => ({
-    type: 'region/changeRegion',
-    payload: {
-        selectedRegion: selection
-    }
+    type: 'region/setRegion',
+    payload: selection
 })
 
 // Requested vaccine data based on activeRegion

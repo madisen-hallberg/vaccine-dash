@@ -1,11 +1,9 @@
 function regionReducer(state = {activeRegion: 'OR'}, action) {
     switch (action.type) {
-        case 'region/changeRegion':
+        case 'region/setRegion':
             return {
-                // copy state
-                ...state,
-                // overwrite region
-                activeRegion: action.payload.selectedRegion
+                ...state,               //copy state
+                activeRegion: action    //overwrite region
             }
         default:
             return state
