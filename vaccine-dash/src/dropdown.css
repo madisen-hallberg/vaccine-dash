@@ -1,0 +1,17 @@
+#dropdown-size-small > button{
+    color: black;
+    background-color: white;
+    border: none;
+    max-height: 50px;
+    overflow-y: scroll;
+}
+
+#root > div > div {
+    border: none;
+}
+
+.dropdown-menu {
+    width: 70%;
+    height: 294px;
+    overflow-y: scroll;
+  }
