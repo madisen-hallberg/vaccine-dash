@@ -6,11 +6,13 @@ const initialState = {
     status: 'pending',
     error: null
 }
-const url = `https://www.vaccinespotter.org/api/v0/states.json`
 
-export const fetchVaccineData = createAsyncThunk('vaccines/fetchData', async () => {
-    const res = await fetch(url)
-    return res.json()
+const states_endpoint = `https://www.vaccinespotter.org/api/v0/states/`
+
+export const fetchVaccineData = createAsyncThunk('vaccines/fetchData', async (region=null) => {
+    let selectedRegion = region ? region.code : 'states'
+    const res = await fetch(states_endpoint + `${selectedRegion}.json`)
+    return await res.json()
 })
 
 /* 
@@ -44,5 +46,5 @@ export const { getData } = vaccineSlice.actions
 // Reducer
 export default vaccineSlice.reducer
 // Selectors
-export const allVaccineData = state => state.vaccines.data
-export const vaccineDataByState = (state, USState) => state.vaccines.data.filter(d => d.state === USState)
+export const allAvailabilityData = state => state.vaccines.data
+export const availabilityByState = (state, stateCode) => state.vaccines.data.filter(d => d.state === stateCode)

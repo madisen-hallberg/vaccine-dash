@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit'
 import regionReducer from '../features/regionSelector/regionSlice'
-import vaccineReducer from '../features/vaccines/vaccineSlice'
+import vaccineReducer from '../features/vaccineAvailability/vaccineSlice'
 
 export default configureStore(
     {

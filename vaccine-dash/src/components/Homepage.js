@@ -1,11 +1,11 @@
 import RegionSelector from '../features/regionSelector/RegionSelector'
-import Vaccines from '../features/vaccines/Vaccines';
+import AvailableVaccines from '../features/vaccineAvailability/Vaccines';
 
 function Home() {
     return(
         <div className="Homepage">
             <RegionSelector />
-            <Vaccines />
+            <AvailableVaccines />
         </div>
     );
 }
