@@ -2,40 +2,40 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { selectActiveRegion } from '../regionSelector/regionSlice'
-import { allAvailabilityData, availabilityByState, fetchVaccineData } from './vaccineSlice'
+import { availabilityData, fetchAvailabilityData } from './vaccineSlice'
 
 
 function AvailableVaccines() {
     const dispatch = useDispatch()
-    const vaccineData = useSelector(allAvailabilityData)
-    // TODO: filter by region
-    const region = useSelector(selectActiveRegion)
 
+    const region = useSelector(selectActiveRegion)
     const loadStatus = useSelector(state => state.vaccines.status)
+    const availability = useSelector(availabilityData)
 
     useEffect(() => {
-        console.log(region.code)
         if (loadStatus === 'pending') {
-            dispatch(fetchVaccineData(region))
+            dispatch(fetchAvailabilityData(region.code))
         }
     }, [loadStatus, dispatch, region])
 
-    const body = (loadStatus !== 'pending' ? vaccineData.map(datum => <Vaccine {...datum} />) : <p>Loading...</p>)
 
-    return(
+    const loadingMsg = <p>Loading...</p>
+    const contents = (loadStatus !== 'pending') ? availability.map((dat, i) => <VaccProvider key={i} {...dat} />) : loadingMsg
+
+    return (
         <div>
             <h1>Vaccines Distributed</h1>
-            {body}
+            {contents}
         </div>
-    );
+    )
 }
 
-function Vaccine({ id, name, store_count }) {
+function VaccProvider({ name, city, state }) {
     return (
-        <div key={id}>
-            <h3>{name}</h3>
-            <p>{store_count}</p>
-        </div>
+        <article>
+            <h4>{name}</h4>
+            <p>{city}, {state}</p>
+        </article>
     )
 }
 
