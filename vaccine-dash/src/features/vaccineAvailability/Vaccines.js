@@ -1,6 +1,12 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
+import Table from '@material-ui/core/Table'
+import TableBody from '@material-ui/core/TableBody'
+import TableCell from '@material-ui/core/TableCell'
+import TableHead from '@material-ui/core/TableHead'
+import TableRow from '@material-ui/core/TableRow'
+
 import { selectActiveRegion } from '../regionSelector/regionSlice'
 import { availabilityData, fetchAvailabilityData } from './vaccineSlice'
 
@@ -20,22 +26,34 @@ function AvailableVaccines() {
 
 
     const loadingMsg = <p>Loading...</p>
-    const contents = (loadStatus !== 'pending') ? availability.map((dat, i) => <VaccProvider key={i} {...dat} />) : loadingMsg
+    const rows = availability.map((dat, i) => <AvailabilityRow key={i} {...dat} />)
 
     return (
         <div>
             <h1>Vaccines Distributed</h1>
-            {contents}
+            <Table>
+                <TableHead>
+                    <TableRow>
+                        <TableCell>Name</TableCell>
+                        <TableCell>City</TableCell>
+                        <TableCell>State</TableCell>
+                    </TableRow>
+                </TableHead>
+                <TableBody>
+                    {rows}
+                </TableBody>
+            </Table>
         </div>
     )
 }
 
-function VaccProvider({ name, city, state }) {
+function AvailabilityRow({ name, city, state }) {
     return (
-        <article>
-            <h4>{name}</h4>
-            <p>{city}, {state}</p>
-        </article>
+        <TableRow>
+            <TableCell>{name}</TableCell>
+            <TableCell>{city}</TableCell>
+            <TableCell>{state}</TableCell>
+        </TableRow>
     )
 }
 
