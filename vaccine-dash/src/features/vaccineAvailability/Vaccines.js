@@ -26,7 +26,7 @@ function AvailableVaccines() {
 
 
     const loadingMsg = <p>Loading...</p>
-    const rows = availability.map((dat, i) => <AvailabilityRow key={i} {...dat} />)
+    const rows = availability.map(dat => <AvailabilityRow key={dat.id} {...dat} />)
 
     return (
         <div>
