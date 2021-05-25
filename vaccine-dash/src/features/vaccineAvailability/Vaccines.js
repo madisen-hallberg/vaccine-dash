@@ -8,20 +8,20 @@ import TableHead from '@material-ui/core/TableHead'
 import TableRow from '@material-ui/core/TableRow'
 import AvailabilityRow from './AvailabilityRow'
 
-import { selectActiveRegion } from '../regionSelector/regionSlice'
+import { activeRegionCode } from '../regionSelector/regionSlice'
 import { availabilityData, fetchAvailabilityData } from './vaccineSlice'
 
 
 function AvailableVaccines() {
     const dispatch = useDispatch()
 
-    const region = useSelector(selectActiveRegion)
+    const region = useSelector(activeRegionCode)
     const loadStatus = useSelector(state => state.vaccines.status)
     const availability = useSelector(availabilityData)
 
     useEffect(() => {
         if (loadStatus === 'pending') {
-            dispatch(fetchAvailabilityData(region.code))
+            dispatch(fetchAvailabilityData(region))
         }
     }, [loadStatus, dispatch, region])
 
