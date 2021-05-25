@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { DataGrid } from '@material-ui/data-grid'
+import CircularProgress from '@material-ui/core/CircularProgress'
 
 import { activeRegionCode } from '../regionSelector/regionSlice'
 import { availabilityData, fetchAvailabilityData } from './vaccineSlice'
@@ -36,7 +37,8 @@ function AvailableVaccines() {
     return (
         <div>
             <h1>Vaccine Availability</h1>
-            {loadStatus==='loading' && <p>Loading...</p>}
+            {loadStatus==='loading' && <CircularProgress />}
+
             {loadStatus !== 'loading' &&
                 <div style={{ height: 520, width: '100%' }}>
                     <DataGrid rows={rowData} columns={headers} pageSize={20} />
