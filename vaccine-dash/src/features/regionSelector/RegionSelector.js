@@ -6,6 +6,7 @@ import FormControl from '@material-ui/core/FormControl'
 import { useSelector, useDispatch } from 'react-redux'
 import { setRegion, activeRegionCode } from './regionSlice'
 import { fetchAvailabilityData } from '../vaccineAvailability/vaccineSlice'
+import { fetchHistoricData } from '../historicDisplay/historicSlice'
 
 const regions = [ "AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "DC", "FL", "GA", "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY", "AS", "GU", "MH", "FM", "MP", "PW", "PR", "VI" ]
 
@@ -16,6 +17,7 @@ export default function RegionSelector() {
     const handleChange = newRegion => {
         dispatch(setRegion(newRegion))
         dispatch(fetchAvailabilityData(newRegion))
+        dispatch(fetchHistoricData(newRegion))
     }
 
     return (
