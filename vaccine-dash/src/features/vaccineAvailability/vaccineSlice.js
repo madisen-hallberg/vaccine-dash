@@ -37,13 +37,6 @@ const extractData = feature => {
     return {name, address, city, state, carries_vaccine, appointments, provider, url, id}
 }
 
-/* 
- * Steps for async thunks (see: vaccineSlice.extraReducers above)
- * 1) dispatch "start" action before the request (track loading state)
- * 2) async request is made
- * 3) async logic dispatches either "success" action containing result data, or "failure" action containing details
- * 4) reducer clears the loading state
- */
 export const vaccineSlice = createSlice({
     name: 'vaccines',
     initialState,
@@ -67,4 +60,4 @@ export const vaccineSlice = createSlice({
 export default vaccineSlice.reducer
 // Selectors
 export const availabilityData = state => state.vaccines.data
-export const availabilityByState = (state, stateCode) => state.vaccines.data.filter(d => d.state === stateCode)
+// export const availabilityByState = (state, stateCode) => state.vaccines.data.filter(d => d.state === stateCode)
