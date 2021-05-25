@@ -27,7 +27,7 @@ export default function RegionSelector() {
                 value={region}
                 onChange={e => handleChange(e.target.value)}
             >
-                {regions.map(r => <MenuItem value={r}>{r}</MenuItem>)}
+                {regions.map(r => <MenuItem key={r} value={r}>{r}</MenuItem>)}
             </Select>
         </FormControl>
     )
