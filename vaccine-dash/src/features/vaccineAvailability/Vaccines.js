@@ -30,7 +30,7 @@ function AvailableVaccines() {
 
     return (
         <div>
-            <h1>Vaccines Distributed</h1>
+            <h1>Vaccine Availability</h1>
             {loadStatus==='loading' && loadingMsg}
             {loadStatus !== 'loading' &&
                 <Table>
