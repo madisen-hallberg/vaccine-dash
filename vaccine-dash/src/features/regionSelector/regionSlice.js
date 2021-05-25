@@ -18,4 +18,4 @@ export const { setRegion } = regionSlice.actions
 export default regionSlice.reducer
 
 // Selector functions
-export const selectActiveRegion = state => state.region
+export const activeRegionCode = state => state.region.code
