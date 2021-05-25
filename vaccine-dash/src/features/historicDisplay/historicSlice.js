@@ -12,7 +12,7 @@ export const fetchHistoricData = createAsyncThunk(
     'historic/fetchData',
     async () => {
         const res = await fetch(url)
-        return res.json()
+        return await res.json()
     }
 )
 
