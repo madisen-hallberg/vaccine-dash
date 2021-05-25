@@ -58,6 +58,3 @@ export const vaccineSlice = createSlice({
 
 // Reducer
 export default vaccineSlice.reducer
-// Selectors
-export const availabilityData = state => state.vaccines.data
-// export const availabilityByState = (state, stateCode) => state.vaccines.data.filter(d => d.state === stateCode)
