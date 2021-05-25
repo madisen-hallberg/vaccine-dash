@@ -31,6 +31,8 @@ function AvailableVaccines() {
     return (
         <div>
             <h1>Vaccines Distributed</h1>
+            {loadStatus==='loading' && loadingMsg}
+            {loadStatus !== 'loading' &&
             <Table>
                 <TableHead>
                     <TableRow>
@@ -43,6 +45,7 @@ function AvailableVaccines() {
                     {rows}
                 </TableBody>
             </Table>
+            }
         </div>
     )
 }
