@@ -1,16 +1,19 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import Table from '@material-ui/core/Table'
-import TableBody from '@material-ui/core/TableBody'
-import TableCell from '@material-ui/core/TableCell'
-import TableHead from '@material-ui/core/TableHead'
-import TableRow from '@material-ui/core/TableRow'
-import AvailabilityRow from './AvailabilityRow'
+import { DataGrid } from '@material-ui/data-grid'
 
 import { activeRegionCode } from '../regionSelector/regionSlice'
 import { availabilityData, fetchAvailabilityData } from './vaccineSlice'
 
+const headers = [
+    { field: 'name', headerName: 'Name', width: 300 },
+    { field: 'provider', headerName: 'Provider', width: 130 },
+    { field: 'address', headerName: 'Address', width: 280 },
+    { field: 'city', headerName: 'City', width: 130 },
+    { field: 'state', headerName: 'State', width: 120 },
+    { field: 'appointments', headerName: 'Appointments Available', width: 300 }
+]
 
 function AvailableVaccines() {
     const dispatch = useDispatch()
@@ -25,27 +28,19 @@ function AvailableVaccines() {
         }
     }, [loadStatus, dispatch, region])
 
+    const rowData = availability.map(provider => ({
+        ...provider,
+        appointments: provider.appointments.length
+    }))
 
     return (
         <div>
             <h1>Vaccine Availability</h1>
             {loadStatus==='loading' && <p>Loading...</p>}
             {loadStatus !== 'loading' &&
-                <Table>
-                    <TableHead>
-                        <TableRow>
-                            <TableCell>Name</TableCell>
-                            <TableCell>Provider</TableCell>
-                            <TableCell>Address</TableCell>
-                            <TableCell>City</TableCell>
-                            <TableCell>State</TableCell>
-                            <TableCell>Avail. Appts</TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {availability.map(dat => <AvailabilityRow key={dat.id} {...dat} />)}
-                    </TableBody>
-                </Table>
+                <div style={{ height: 520, width: '100%' }}>
+                    <DataGrid rows={rowData} columns={headers} pageSize={20} />
+                </div>
             }
         </div>
     )
