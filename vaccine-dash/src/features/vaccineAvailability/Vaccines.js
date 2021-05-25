@@ -37,9 +37,9 @@ function AvailableVaccines() {
     return (
         <div>
             <h1>Vaccine Availability</h1>
-            {loadStatus==='loading' && <CircularProgress />}
+            {loadStatus !=='succeeded' && <CircularProgress />}
 
-            {loadStatus !== 'loading' &&
+            {loadStatus === 'succeeded' &&
                 <div style={{ height: 520, width: '100%' }}>
                     <DataGrid rows={rowData} columns={headers} pageSize={20} />
                 </div>
