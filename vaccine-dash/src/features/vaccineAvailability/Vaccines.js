@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import { DataGrid } from '@material-ui/data-grid'
 
-import { selectActiveRegion } from '../regionSelector/regionSlice'
+import { activeRegionCode } from '../regionSelector/regionSlice'
 import { availabilityData, fetchAvailabilityData } from './vaccineSlice'
 
 const headers = [
@@ -18,13 +18,13 @@ const headers = [
 function AvailableVaccines() {
     const dispatch = useDispatch()
 
-    const region = useSelector(selectActiveRegion)
+    const region = useSelector(activeRegionCode)
     const loadStatus = useSelector(state => state.vaccines.status)
     const availability = useSelector(availabilityData)
 
     useEffect(() => {
         if (loadStatus === 'pending') {
-            dispatch(fetchAvailabilityData(region.code))
+            dispatch(fetchAvailabilityData(region))
         }
     }, [loadStatus, dispatch, region])
 
