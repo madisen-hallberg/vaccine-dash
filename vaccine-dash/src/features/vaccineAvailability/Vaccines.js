@@ -33,29 +33,35 @@ function AvailableVaccines() {
             <h1>Vaccines Distributed</h1>
             {loadStatus==='loading' && loadingMsg}
             {loadStatus !== 'loading' &&
-            <Table>
-                <TableHead>
-                    <TableRow>
-                        <TableCell>Name</TableCell>
-                        <TableCell>City</TableCell>
-                        <TableCell>State</TableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    {rows}
-                </TableBody>
-            </Table>
+                <Table>
+                    <TableHead>
+                        <TableRow>
+                            <TableCell>Name</TableCell>
+                            <TableCell>Provider</TableCell>
+                            <TableCell>Address</TableCell>
+                            <TableCell>City</TableCell>
+                            <TableCell>State</TableCell>
+                            <TableCell>Avail. Appts</TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {rows}
+                    </TableBody>
+                </Table>
             }
         </div>
     )
 }
 
-function AvailabilityRow({ name, city, state }) {
+function AvailabilityRow({ name, provider, address, city, state, appointments }) {
     return (
         <TableRow>
             <TableCell>{name}</TableCell>
+            <TableCell>{provider}</TableCell>
+            <TableCell>{address}</TableCell>
             <TableCell>{city}</TableCell>
             <TableCell>{state}</TableCell>
+            <TableCell>{appointments.length}</TableCell>
         </TableRow>
     )
 }

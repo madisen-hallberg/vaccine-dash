@@ -14,10 +14,28 @@ export const fetchAvailabilityData = createAsyncThunk('vaccines/fetchData', asyn
     let selectedRegion = region ? region : 'states'
 
     const res = await fetch(states_endpoint + `${selectedRegion}.json`)
-    const data = await res.json()
-
-    return data.features.map(d => d.properties)
+    let data = await res.json()
+    data = data.features.map(d => d.properties)
+    data = data.filter(d => d.appointments_available)
+    data = data.map(d => extractData(d))
+    return data
 })
+
+const extractData = feature => {
+    const {
+        name,
+        address,
+        city,
+        state,
+        carries_vaccine,
+        appointments,
+        provider,
+        url,
+        id
+    } = feature
+    
+    return {name, address, city, state, carries_vaccine, appointments, provider, url, id}
+}
 
 /* 
  * Steps for async thunks (see: vaccineSlice.extraReducers above)
@@ -45,8 +63,6 @@ export const vaccineSlice = createSlice({
 })
 
 
-// Actions
-export const { getData } = vaccineSlice.actions
 // Reducer
 export default vaccineSlice.reducer
 // Selectors
