@@ -17,7 +17,7 @@ export const fetchAvailabilityData = createAsyncThunk('vaccines/fetchData', asyn
     let data = await res.json()
     data = data.features.map(d => d.properties)
     data = data.filter(d => d.appointments_available)
-    data = data.map(d => extractData(d))
+    data = data.map(extractData)
     return data
 })
 
