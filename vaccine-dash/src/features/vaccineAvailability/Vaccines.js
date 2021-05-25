@@ -6,6 +6,7 @@ import TableBody from '@material-ui/core/TableBody'
 import TableCell from '@material-ui/core/TableCell'
 import TableHead from '@material-ui/core/TableHead'
 import TableRow from '@material-ui/core/TableRow'
+import AvailabilityRow from './AvailabilityRow'
 
 import { selectActiveRegion } from '../regionSelector/regionSlice'
 import { availabilityData, fetchAvailabilityData } from './vaccineSlice'
@@ -25,12 +26,10 @@ function AvailableVaccines() {
     }, [loadStatus, dispatch, region])
 
 
-    const loadingMsg = <p>Loading...</p>
-
     return (
         <div>
             <h1>Vaccine Availability</h1>
-            {loadStatus==='loading' && loadingMsg}
+            {loadStatus==='loading' && <p>Loading...</p>}
             {loadStatus !== 'loading' &&
                 <Table>
                     <TableHead>
@@ -49,19 +48,6 @@ function AvailableVaccines() {
                 </Table>
             }
         </div>
-    )
-}
-
-function AvailabilityRow({ name, provider, address, city, state, appointments }) {
-    return (
-        <TableRow>
-            <TableCell>{name}</TableCell>
-            <TableCell>{provider}</TableCell>
-            <TableCell>{address}</TableCell>
-            <TableCell>{city}</TableCell>
-            <TableCell>{state}</TableCell>
-            <TableCell>{appointments.length}</TableCell>
-        </TableRow>
     )
 }
 
