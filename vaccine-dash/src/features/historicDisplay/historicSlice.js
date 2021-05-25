@@ -8,10 +8,11 @@ const initialState = {
 
 const url = `https://api.covidactnow.org/v2/states.timeseries.json?apiKey=${process.env.REACT_APP_COVIDACTNOW_API_KEY}`
 
-export const fetchHistoricData = createAsyncThunk('historic/fetchData', async () => {
+export const fetchHistoricData = createAsyncThunk('historic/fetchData', async (region) => {
     const res = await fetch(url)
     let data = await res.json()
-    return data
+    data = data.filter(d => d.state === region)
+    return data[0]
 })
 
 const historicSlice = createSlice({
@@ -22,12 +23,10 @@ const historicSlice = createSlice({
             state.status = 'loading'
         },
         [fetchHistoricData.fulfilled]: (state, action) => {
-            console.log(action)
             state.status = 'succeeded'
             state.data = action.payload
         },
         [fetchHistoricData.rejected]: (state, action) => {
-            console.log(action)
             state.status = 'failed'
             state.error = action.payload
         }
@@ -36,5 +35,5 @@ const historicSlice = createSlice({
 
 export default historicSlice.reducer
 // Selectors
-export const allHistoricData = state => state.historic.data
+export const timeSeriesData = state => state.historic.data.actualsTimeseries
 // export const historicByState = (state, region) => state.historic.data.filter(d => d.state === region)
