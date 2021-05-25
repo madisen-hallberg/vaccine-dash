@@ -36,4 +36,4 @@ const historicSlice = createSlice({
 export default historicSlice.reducer
 // Selectors
 export const timeSeriesData = state => state.historic.data.actualsTimeseries
-// export const historicByState = (state, region) => state.historic.data.filter(d => d.state === region)
+export const riskLevelsTimeseries = state => state.historic.data.riskLevelsTimeseries
