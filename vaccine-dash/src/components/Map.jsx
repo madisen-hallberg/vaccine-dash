@@ -29,13 +29,15 @@ class MyMap extends Component {
                       '#FFEDA0';
 }
 
-  stateStyle = {
-    fillColor: '#F28F3B',
-    weight: 2,
-    opacity: 1,
-    color: 'white',
-    dashArray: '3',
-    fillOpacity: 0.5
+stateStyle = (feature) =>{
+  return {
+      fillColor: this.getColor(feature.properties.density),
+      weight: 2,
+      opacity: 1,
+      color: 'white',
+      dashArray: '3',
+      fillOpacity: 0.7
+  };
 }
 
 //interaction
@@ -50,16 +52,9 @@ highlightFeature = (event) =>{
 
 }
 
-resetHighlight = (event) => {
-  event.target.setStyle({
-    fillColor: '#F28F3B',
-    weight: 2,
-    opacity: 1,
-    color: 'white',
-    dashArray: '3',
-    fillOpacity: 0.5
-  });
-}
+resetHighlight = ({ target }) => {
+  target.setStyle(this.stateStyle(target.feature));
+};
 
 zoomToFeature({ target }) {
   target._map.fitBounds(target.getBounds().pad(0.05));
