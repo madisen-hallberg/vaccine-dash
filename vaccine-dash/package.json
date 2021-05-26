@@ -9,8 +9,10 @@
     "@testing-library/jest-dom": "^5.12.0",
     "@testing-library/react": "^11.2.6",
     "@testing-library/user-event": "^12.8.3",
+    "leaflet": "^1.7.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-leaflet": "^3.2.0",
     "react-leaflet-choropleth": "^2.0.1",
     "react-redux": "^7.2.4",
     "react-router-dom": "^5.2.0",
@@ -30,16 +32,17 @@
       "react-app/jest"
     ]
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not op_mini all"
+  ],
+  "devDependencies": {
+    "@babel/core": "^7.14.3",
+    "@babel/preset-env": "^7.14.2",
+    "@babel/preset-react": "^7.13.13",
+    "babel-loader": "^8.1.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1"
   }
 }
