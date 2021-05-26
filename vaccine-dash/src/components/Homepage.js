@@ -1,6 +1,7 @@
 import RegionSelector from '../features/regionSelector/RegionSelector'
 import AvailableVaccines from '../features/vaccineAvailability/Vaccines';
 import HistoricDisplay from '../features/historicDisplay/HistoricDisplay'
+import MyMap from './Map';
 
 function Home() {
     return(
@@ -8,6 +9,7 @@ function Home() {
             <RegionSelector />
             <AvailableVaccines />
             <HistoricDisplay />
+            <MyMap />
         </div>
     );
 }
