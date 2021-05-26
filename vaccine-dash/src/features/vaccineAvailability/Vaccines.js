@@ -5,7 +5,7 @@ import { DataGrid } from '@material-ui/data-grid'
 import CircularProgress from '@material-ui/core/CircularProgress'
 
 import { activeRegionCode } from '../regionSelector/regionSlice'
-import { availabilityData, fetchAvailabilityData } from './vaccineSlice'
+import { fetchAvailabilityData } from './vaccineSlice'
 
 const headers = [
     { field: 'name', headerName: 'Name', width: 300 },
@@ -21,7 +21,7 @@ function AvailableVaccines() {
 
     const region = useSelector(activeRegionCode)
     const loadStatus = useSelector(state => state.vaccines.status)
-    const availability = useSelector(availabilityData)
+    const availability = useSelector(state => state.vaccines.data)
 
     useEffect(() => {
         if (loadStatus === 'pending') {
