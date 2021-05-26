@@ -13,7 +13,6 @@ class MyMap extends Component {
 
   state = {}
 
-
   componentDidMount(){
     console.log(mapData);
   }
@@ -52,10 +51,6 @@ highlightFeature = (event) =>{
 }
 
 resetHighlight = (event) => {
-  MapContainer.resetStyle(event.target);
-}
-
-resetHighlight = (event) => {
   event.target.setStyle({
     fillColor: '#F28F3B',
     weight: 2,
@@ -66,18 +61,24 @@ resetHighlight = (event) => {
   });
 }
 
+zoomToFeature({ target }) {
+  target._map.fitBounds(target.getBounds().pad(0.05));
+}
+
 onEachFeature = (feature, layer) =>{
   layer.on({
          mouseover: this.highlightFeature,
-         mouseout: this.resetHighlight
+         mouseout: this.resetHighlight,
+         click: this.zoomToFeature
      });
  }
+
 
   render() {
     return (
     <div>
       <h1>My Map</h1>
-      <MapContainer id='my-leaflet-map' style={{ height: "80vh" }} zoom = {4} center = {([37.8, -96])}>
+      <MapContainer id='my-leaflet-map' style={{ height: "80vh" }} zoom = {4} center = {([37.8, -96])} >
         <GeoJSON style={this.stateStyle} data={mapData.features} onEachFeature={this.onEachFeature} />
       </MapContainer>
     </div>);
