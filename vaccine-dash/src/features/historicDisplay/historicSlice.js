@@ -6,13 +6,16 @@ const initialState = {
     error: null
 }
 
-const url = `https://api.covidactnow.org/v2/states.timeseries.json?apiKey=${process.env.REACT_APP_COVIDACTNOW_API_KEY}`
+export const fetchHistoricData = createAsyncThunk('historic/fetchData', async (region=null) => {
+    let url;
+    if (region) {
+        url = `https://api.covidactnow.org/v2/state/${region}.timeseries.json?apiKey=${process.env.REACT_APP_COVIDACTNOW_API_KEY}`
+    } else {
+        url = `https://api.covidactnow.org/v2/states.timeseries.json?apiKey=${process.env.REACT_APP_COVIDACTNOW_API_KEY}`
+    }
 
-export const fetchHistoricData = createAsyncThunk('historic/fetchData', async (region) => {
     const res = await fetch(url)
-    let data = await res.json()
-    data = data.filter(d => d.state === region)
-    return data[0]
+    return await res.json()
 })
 
 const historicSlice = createSlice({
