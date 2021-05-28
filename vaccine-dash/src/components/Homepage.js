@@ -1,7 +1,7 @@
 import RegionSelector from '../features/regionSelector/RegionSelector'
-import AvailableVaccines from '../features/vaccineAvailability/Vaccines';
+import AvailableVaccines from '../features/vaccineAvailability/Vaccines'
 import HistoricDisplay from '../features/historicDisplay/HistoricDisplay'
-import MyMap from './Map';
+import MyMap from './Map/Map';
 
 function Home() {
     return(
