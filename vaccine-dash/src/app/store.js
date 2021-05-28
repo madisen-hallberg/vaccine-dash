@@ -6,7 +6,7 @@ export default configureStore(
     {
         reducer: {
             region: regionReducer,
-            vaccines: vaccineReducer
+            vaccines: vaccineReducer,
         }
     },
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()

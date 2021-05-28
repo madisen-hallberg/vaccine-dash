@@ -7,7 +7,6 @@ import L  from './leaflet';
 
 class MyMap extends Component { 
 
-  state = {}
 
   componentDidMount(){
 
@@ -21,8 +20,28 @@ class MyMap extends Component {
       zoomOffset: -1
     }).addTo(map);
 
-    L.geoJSON(mapData).addTo(map);
+    //data
+    async function getData(){
+      const response = await fetch('https://api.covidactnow.org/v2/states.json?apiKey=38647fa3b7c14582bc7fc0853e42dd3d')
+      const data = await response.json();
+      let vaccinesDistributed = [];
+      //format data
+      data.map(area => {
+        const distributed = area.actuals.vaccinesDistributed;
+        vaccinesDistributed.push(distributed)
+        return data;
+      })
 
+      //add to map
+      L.geoJSON(mapData).addTo(map);
+      L.geoJson(mapData, {style: style}).addTo(map);
+      geojson = L.geoJson(mapData, {
+        style: style,
+        onEachFeature: onEachFeature
+      }).addTo(map);
+    }
+
+    getData();
 
     //color
     function getColor(d) {
@@ -47,7 +66,6 @@ class MyMap extends Component {
       };
     }
   
-    L.geoJson(mapData, {style: style}).addTo(map);
 
     //listeners
     var geojson;
@@ -87,11 +105,6 @@ class MyMap extends Component {
           click: zoomToFeature
       });
     }
-
-    geojson = L.geoJson(mapData, {
-      style: style,
-      onEachFeature: onEachFeature
-    }).addTo(map);
 
     //custom info control
     var info = L.control();
@@ -134,12 +147,9 @@ class MyMap extends Component {
   }
 
   render() {
-
     
     return (
-    <div id="leafletmap">
-   
-    </div>
+      <div id="leafletmap"></div>   
     );
   }
 
