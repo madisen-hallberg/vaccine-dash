@@ -20,27 +20,46 @@ class MyMap extends Component {
       zoomOffset: -1
     }).addTo(map);
 
+    L.geoJSON(mapData).addTo(map);
+
     //data
-    async function getData(){
+    async function getData() {
       const response = await fetch('https://api.covidactnow.org/v2/states.json?apiKey=38647fa3b7c14582bc7fc0853e42dd3d')
       const data = await response.json();
+      const array = await parseData(data);
+      geojson = L.geoJson(mapData, {
+        style: style,
+        onEachFeature: onEachFeatureClosure(array)
+      }).addTo(map);
+      return array;
+    }
+
+    function parseData(data) {
       let vaccinesDistributed = [];
-      //format data
       data.map(area => {
         const distributed = area.actuals.vaccinesDistributed;
         vaccinesDistributed.push(distributed)
         return data;
       })
-
-      //add to map
-      L.geoJSON(mapData).addTo(map);
-      L.geoJson(mapData, {style: style}).addTo(map);
-      geojson = L.geoJson(mapData, {
-        style: style,
-        onEachFeature: onEachFeature
-      }).addTo(map);
+      return vaccinesDistributed;
     }
 
+    const vaccineData = getData();
+
+    L.geoJson(mapData, {style: style}).addTo(map)
+    
+    
+
+    function style(feature) {
+      return {
+          fillColor: getColor(feature.properties.density),
+          weight: 2,
+          opacity: 1,
+          color: 'white',
+          dashArray: '3',
+          fillOpacity: 0.4,
+      };
+    }
     getData();
 
     //color
@@ -55,16 +74,7 @@ class MyMap extends Component {
                         '#FFEDA0';
     }
 
-    function style(feature) {
-      return {
-          fillColor: getColor(feature.properties.density),
-          weight: 2,
-          opacity: 1,
-          color: 'white',
-          dashArray: '3',
-          fillOpacity: 0.4,
-      };
-    }
+    
   
 
     //listeners
@@ -97,14 +107,23 @@ class MyMap extends Component {
       map.fitBounds(e.target.getBounds());
     }
 
+    function onEachFeatureClosure(vaccineData) {
 
-    function onEachFeature(feature, layer) {
-      layer.on({
-          mouseover: highlightFeature,
-          mouseout: resetHighlight,
-          click: zoomToFeature
-      });
+      return function onEachFeature(feature, layer) {
+        //get id
+        const id = feature.id;
+        const index = parseInt(id, 10);
+        console.log(id + ": " + vaccineData[index]);
+        feature['vaccine'] = vaccineData[index];
+        layer.on({
+            mouseover: highlightFeature,
+            mouseout: resetHighlight,
+            click: zoomToFeature
+        });
+      }
+      
     }
+    
 
     //custom info control
     var info = L.control();
@@ -117,8 +136,8 @@ class MyMap extends Component {
 
     // method that we will use to update the control based on feature properties passed
     info.update = function (props) {
-        this._div.innerHTML = '<h4>US Population Density</h4>' +  (props ?
-            '<b>' + props.name + '</b><br />' + props.density + ' people / mi<sup>2</sup>'
+        this._div.innerHTML = '<h4>US Vaccines Distributed</h4>' +  (props ?
+            '<b>' + props.name + '</b><br />' + props.density + ' people vaccinated'
             : 'Hover over a state');
     };
 
