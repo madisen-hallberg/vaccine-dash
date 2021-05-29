@@ -34,13 +34,11 @@
 }
 
 .right.active {
-  filter: invert(47%) sepia(59%) saturate(2307%) hue-rotate(195deg)
-    brightness(104%) contrast(114%);
+    filter: invert(41%) sepia(97%) saturate(363%) hue-rotate(161deg) brightness(100%) contrast(90%);
 }
 
 .right:hover {
-  filter: invert(47%) sepia(59%) saturate(2307%) hue-rotate(195deg)
-    brightness(104%) contrast(114%);
+    filter: invert(41%) sepia(97%) saturate(363%) hue-rotate(161deg) brightness(100%) contrast(90%);
 }
 
 /*home*/
@@ -180,6 +178,19 @@ li {
   border-radius: 10px;
 }
 
+.button:hover{
+    border: solid;
+    border-width: 1px;
+    border-color: rgb(108, 233, 255);
+}
+
+.facts:hover{
+    border: solid;
+    border-width: 1px;
+    border-color: rgb(255, 188, 101);
+
+}
+
 .buttonpics {
   filter: invert(100%) sepia(8%) saturate(4929%) hue-rotate(160deg)
     brightness(114%) contrast(94%);
@@ -201,6 +212,18 @@ li {
 }
 
 .graphcontainer {
-  height: 400px;
-  flex-direction: column;
+    margin-top: 20px;
+    height:400px;
+    width: 900px;
+    padding-bottom: 50px;
+}
+
+.graphtitle{
+    color: #ee7b7b;
+    margin-bottom: 0px;
+}
+
+
+@media screen and (max-width: 768px){
+   
 }

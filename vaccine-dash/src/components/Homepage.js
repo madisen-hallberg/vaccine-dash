@@ -2,7 +2,7 @@ import RegionSelector from '../features/regionSelector/RegionSelector';
 import AvailableVaccines from '../features/vaccineAvailability/Vaccines';
 import HistoricDisplay from '../features/historicDisplay/HistoricDisplay';
 import '../style/main.css';
-import MyMap from './Map/Map';
+import MyMap from './map/Map';
 import Schedule from './home/scheduleButton';
 import Facts from './home/factsButton';
 
@@ -22,6 +22,8 @@ function Home() {
                 <div className = "homeitem">
                     <RegionSelector />
                     <AvailableVaccines />
+                </div>
+                <div className = "homeitem">
                     <HistoricDisplay />
                 </div>
             </div>

@@ -32,11 +32,11 @@ export default function HistoricDisplay() {
     })
 
     return (
-        <section className='graphcontainer boxshadow container'>
-            <h2>Vaccine Over Time</h2>
+        <div className='graphcontainer homecontainer'>
+            <h2 className = 'graphtitle'>Vaccine Over Time</h2>
             {loadStatus !== 'succeeded' && <CircularProgress />}
             {loadStatus === 'succeeded' && <StreamChart data={filteredData} />}
-        </section>
+        </div>
     )
 }
 
