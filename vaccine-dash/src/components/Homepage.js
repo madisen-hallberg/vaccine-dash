@@ -6,9 +6,13 @@ import MyMap from './map/Map';
 function Home() {
     return(
         <div className="homepage">
-            <MyMap />
-            <RegionSelector />
-            <AvailableVaccines />
+            <div className = "homeitem">
+                <MyMap />
+            </div>
+            <div className = "homeitem">
+                <RegionSelector />
+                <AvailableVaccines />
+            </div>
         </div>
     );
 }

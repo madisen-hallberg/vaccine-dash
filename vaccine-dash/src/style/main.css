@@ -41,25 +41,34 @@
     filter: invert(47%) sepia(59%) saturate(2307%) hue-rotate(195deg) brightness(104%) contrast(114%);
 }
 
-/*main*/
+/*home*/
 .homepage{
     display: flex;
-    align-content: stretch;
+    align-items: flex-start;
 }
 
-/*map*/
-.mapcontainer{
+.homecontainer{
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    margin: auto;
     background-color: white;
     padding: 20px;
     padding-top: 0px;
     margin: auto;
+    margin-bottom: 10px;
     box-shadow: 5px 8px 8px rgb(228, 228, 228);
     border-radius: 10px;
 }
+
+.homeitem{
+    margin-right: 20px;
+}
+
+/*region select*/
+#region-select-label, #region-select{
+    margin: 10px;
+}
+
+/*map*/
 .maptitle{
     color: rgb(209, 51, 3);
 }
@@ -147,3 +156,4 @@ li{
     height: 600px;
     width: 900px;
 }
+

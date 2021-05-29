@@ -34,14 +34,17 @@ function AvailableVaccines() {
     }))
 
     return (
-        <div>
+        <div className = 'homecontainer'>
             <h2 className ='tabletitle'>Vaccine Availability</h2>
+            <div>
             {loadStatus==='loading' && <p>Loading...</p>}
             {loadStatus !== 'loading' &&
                 <div className="table">
                     <DataGrid rows={rowData} columns={headers} pageSize={20} />
                 </div>
             }
+            </div>
+            
         </div>
     )
 }

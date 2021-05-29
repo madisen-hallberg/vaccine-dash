@@ -19,16 +19,19 @@ export default function RegionSelector() {
     }
 
     return (
-        <FormControl>
-            <InputLabel id='region-select-label'>State</InputLabel>
-            <Select
-                labelId='region-select-label'
-                id='region-select'
-                value={region}
-                onChange={e => handleChange(e.target.value)}
-            >
-                {regions.map(r => <MenuItem value={r}>{r}</MenuItem>)}
-            </Select>
-        </FormControl>
+        <div className ="homecontainer">
+            <FormControl>
+                <InputLabel id='region-select-label'>State</InputLabel>
+                <Select
+                    labelId='region-select-label'
+                    id='region-select'
+                    value={region}
+                    onChange={e => handleChange(e.target.value)}
+                >
+                    {regions.map(r => <MenuItem value={r}>{r}</MenuItem>)}
+                </Select>
+            </FormControl>
+        </div>
+        
     )
 }
