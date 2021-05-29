@@ -3,7 +3,7 @@ import question from '../../assets/question.png';
 
 function Question() {
     return(
-           <img className="logo question" src={question} alt=""/>
+           <img className="logo buttonpics" src={question} alt=""/>
     )
 }
 
