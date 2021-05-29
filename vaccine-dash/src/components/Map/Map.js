@@ -31,8 +31,10 @@ class MyMap extends Component {
         style: style,
         onEachFeature: onEachFeatureClosure(array)
       }).addTo(map);
+
       return array;
     }
+    getData();
 
     function parseData(data) {
       let vaccinesDistributed = [];
@@ -44,15 +46,11 @@ class MyMap extends Component {
       return vaccinesDistributed;
     }
 
-    const vaccineData = getData();
-
     L.geoJson(mapData, {style: style}).addTo(map)
-    
-    
 
     function style(feature) {
       return {
-          fillColor: getColor(feature.properties.density),
+          fillColor: getColor(feature.properties.vaccine),
           weight: 2,
           opacity: 1,
           color: 'white',
@@ -60,22 +58,18 @@ class MyMap extends Component {
           fillOpacity: 0.4,
       };
     }
-    getData();
 
     //color
     function getColor(d) {
-      return d > 1000 ? '#800026' :
-             d > 500  ? '#BD0026' :
-             d > 200  ? '#E31A1C' :
-             d > 100  ? '#FC4E2A' :
-             d > 50   ? '#FD8D3C' :
-             d > 20   ? '#FEB24C' :
-             d > 10   ? '#FED976' :
+      return d > 20000000 ? '#800026' :
+             d > 10000000  ? '#BD0026' :
+             d > 8000000  ? '#E31A1C' :
+             d > 4000000  ? '#FC4E2A' :
+             d > 2000000   ? '#FD8D3C' :
+             d > 1000000   ? '#FEB24C' :
+             d > 500000   ? '#FED976' :
                         '#FFEDA0';
-    }
-
-    
-  
+    }  
 
     //listeners
     var geojson;
@@ -113,8 +107,7 @@ class MyMap extends Component {
         //get id
         const id = feature.id;
         const index = parseInt(id, 10);
-        console.log(id + ": " + vaccineData[index]);
-        feature['vaccine'] = vaccineData[index];
+        feature['properties']['vaccine'] = vaccineData[index];
         layer.on({
             mouseover: highlightFeature,
             mouseout: resetHighlight,
@@ -125,7 +118,6 @@ class MyMap extends Component {
     }
     
 
-    //custom info control
     var info = L.control();
 
     info.onAdd = function (map) {
@@ -136,8 +128,17 @@ class MyMap extends Component {
 
     // method that we will use to update the control based on feature properties passed
     info.update = function (props) {
-        this._div.innerHTML = '<h4>US Vaccines Distributed</h4>' +  (props ?
-            '<b>' + props.name + '</b><br />' + props.density + ' people vaccinated'
+      function numberWithCommas(x) {
+        if(!x){
+          return 0;
+        }
+        else
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+
+    
+        this._div.innerHTML = '<h4>US Vaccines Administered</h4>' +  (props ?
+            '<b>' + props.name + '</b><br />' + numberWithCommas(props.vaccine) + ' People Vaccinated'
             : 'Hover over a state');
     };
 
@@ -149,15 +150,19 @@ class MyMap extends Component {
     legend.onAdd = function (map) {
 
         var div = L.DomUtil.create('div', 'info legend'),
-            grades = [0, 10, 20, 50, 100, 200, 500, 1000],
-            labels = [];
+            grades = [100000, 500000, 1000000, 2000000, 4000000, 8000000, 10000000, 20000000],
+            gradestext = ['100,000', '500,000', '1,000,000', '2,000,000', '4,000,000', '8,000,000', '10,000,000', '20,000,000'],
+            labels = ['vaccines'];
 
-        // loop through our density intervals and generate a label with a colored square for each interval
+        // loop through our vaccine intervals and generate a label with a colored square for each interval
         for (var i = 0; i < grades.length; i++) {
-            div.innerHTML +=
-                '<i style="background:' + getColor(grades[i] + 1) + '"></i> ' +
-                grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '<br>' : '+');
+
+          div.innerHTML +=
+            '<i style="background:' + getColor(grades[i] + 1) + '"></i> ' +
+            gradestext[i] + (gradestext[i + 1] ? '&ndash;' + gradestext[i + 1] + '<br>' : '+');
         }
+
+        
 
         return div;
     };
