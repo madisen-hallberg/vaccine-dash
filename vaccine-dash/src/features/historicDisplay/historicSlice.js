@@ -51,8 +51,9 @@ export const selectVaccineData = state => {
             vaccinationsInitiated,
             vaccinationsCompleted,
             vaccinesAdministered,
+            date,
         } = d
-        return { vaccinesDistributed, vaccinationsInitiated, vaccinationsCompleted, vaccinesAdministered }
+        return { vaccinesDistributed, vaccinationsInitiated, vaccinationsCompleted, vaccinesAdministered, date }
     })
     
     return res.filter(d => typeof d.vaccinesDistributed === 'number')
