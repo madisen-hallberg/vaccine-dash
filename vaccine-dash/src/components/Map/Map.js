@@ -172,7 +172,13 @@ class MyMap extends Component {
   render() {
     
     return (
-      <div id="leafletmap"></div>   
+      <div className ="mapcontainer">
+        <h2 className ='maptitle'>Doses Administered</h2>
+        <div>
+          <div id="leafletmap"></div>   
+        </div>
+      </div>
+     
     );
   }
 

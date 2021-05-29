@@ -35,10 +35,10 @@ function AvailableVaccines() {
 
     return (
         <div>
-            <h1>Vaccine Availability</h1>
+            <h2 className ='tabletitle'>Vaccine Availability</h2>
             {loadStatus==='loading' && <p>Loading...</p>}
             {loadStatus !== 'loading' &&
-                <div style={{ height: 520, width: '100%' }}>
+                <div className="table">
                     <DataGrid rows={rowData} columns={headers} pageSize={20} />
                 </div>
             }
