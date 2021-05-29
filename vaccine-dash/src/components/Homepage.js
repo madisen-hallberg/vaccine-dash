@@ -1,7 +1,7 @@
 import RegionSelector from '../features/regionSelector/RegionSelector'
 import AvailableVaccines from '../features/vaccineAvailability/Vaccines';
 import '../style/main.css';
-import MyMap from './map/Map';
+import MyMap from './Map/Map';
 import Schedule from './home/scheduleButton';
 import Facts from './home/factsButton';
 
