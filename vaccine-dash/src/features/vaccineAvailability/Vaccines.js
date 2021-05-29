@@ -41,7 +41,7 @@ function AvailableVaccines() {
                 {loadStatus==='loading' && <CircularProgress />}
                 {loadStatus === 'succeeded' &&
                     <div className="table">
-                        <DataGrid rows={rowData} columns={headers} pageSize={20} />
+                        <DataGrid rows={rowData} columns={headers} pageSize={5} />
                     </div>
                 }
             </div>
