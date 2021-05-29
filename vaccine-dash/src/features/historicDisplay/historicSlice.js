@@ -40,3 +40,20 @@ export default historicSlice.reducer
 // Selectors
 export const timeSeriesData = state => state.historic.data.actualsTimeseries
 export const riskLevelsTimeseries = state => state.historic.data.riskLevelsTimeseries
+export const selectVaccineData = state => {
+    const data = state.historic.data.actualsTimeseries
+
+    if (data === undefined) return undefined
+
+    let res = data.map(d => {
+        const {
+            vaccinesDistributed,
+            vaccinationsInitiated,
+            vaccinationsCompleted,
+            vaccinesAdministered,
+        } = d
+        return { vaccinesDistributed, vaccinationsInitiated, vaccinationsCompleted, vaccinesAdministered }
+    })
+    
+    return res.filter(d => typeof d.vaccinesDistributed === 'number')
+}

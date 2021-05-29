@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { activeRegionCode } from '../regionSelector/regionSlice'
-import { fetchHistoricData } from './historicSlice'
+import { fetchHistoricData, selectVaccineData } from './historicSlice'
 
 import CircularProgress from '@material-ui/core/CircularProgress'
 
@@ -10,7 +10,7 @@ export default function HistoricDisplay() {
     const dispatch = useDispatch()
     const loadStatus = useSelector(state => state.historic.status)
     const regionCode = useSelector(activeRegionCode)
-    const riskLevels = useSelector(state => state.historic.data.riskLevelsTimeseries)
+    const vaccTimeseries = useSelector(selectVaccineData)
 
     useEffect(() => {
         if (loadStatus === 'pending') {
@@ -18,9 +18,7 @@ export default function HistoricDisplay() {
         }
     }, [loadStatus, dispatch, regionCode])
     
-    console.log(riskLevels)
-    // const dates = riskLevels.map(d => new Date(d.date))
-    // const overalRiskLevel = riskLevels.map(d => d.overall)
+    if (vaccTimeseries === undefined) return <CircularProgress />
 
     return (
         <section>
