@@ -109,7 +109,7 @@ class MyMap extends Component {
         const index = parseInt(id, 10);
         feature['properties']['vaccine'] = vaccineData[index];
         layer.on({
-            mouseover: highlightFeature,
+            mouseover: highlightFeature, 
             mouseout: resetHighlight,
             click: zoomToFeature
         });
@@ -151,8 +151,7 @@ class MyMap extends Component {
 
         var div = L.DomUtil.create('div', 'info legend'),
             grades = [100000, 500000, 1000000, 2000000, 4000000, 8000000, 10000000, 20000000],
-            gradestext = ['100,000', '500,000', '1,000,000', '2,000,000', '4,000,000', '8,000,000', '10,000,000', '20,000,000'],
-            labels = ['vaccines'];
+            gradestext = ['100,000', '500,000', '1,000,000', '2,000,000', '4,000,000', '8,000,000', '10,000,000', '20,000,000'];
 
         // loop through our vaccine intervals and generate a label with a colored square for each interval
         for (var i = 0; i < grades.length; i++) {
