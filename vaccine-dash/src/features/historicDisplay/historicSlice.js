@@ -69,7 +69,7 @@ export const allLineChartData = state => {
             y: slice.vaccinesDistributed,
         }))
         .filter(lastMonth)
-    distribution = formatAsSeries('Vaccines Distributed', 'hsl(42, 70%, 50%)', distribution)
+    distribution = formatAsSeries('Distributed', 'hsl(42, 70%, 50%)', distribution)
 
     let administered = actualsTimeseries
         .map(slice => ({
@@ -77,7 +77,7 @@ export const allLineChartData = state => {
             y: slice.vaccinesAdministered,
         }))
         .filter(lastMonth)
-    administered = formatAsSeries('Vaccines Administered', 'hsl(206, 70%, 50%)', administered)
+    administered = formatAsSeries('Administered', 'hsl(206, 70%, 50%)', administered)
     
     let initiated = actualsTimeseries
         .map(slice => ({
@@ -85,7 +85,7 @@ export const allLineChartData = state => {
             y: slice.vaccinationsInitiated,
         }))
         .filter(lastMonth)
-    initiated = formatAsSeries('Vaccinations Initiated', 'hsl(100, 70%, 50%)', initiated)
+    initiated = formatAsSeries('Initiated', 'hsl(100, 70%, 50%)', initiated)
 
     let completed = actualsTimeseries
         .map(slice => ({
@@ -93,7 +93,7 @@ export const allLineChartData = state => {
             y: slice.vaccinationsCompleted,
         }))
         .filter(lastMonth)
-    completed = formatAsSeries('Vaccinations Initiated', 'hsl(100, 70%, 50%)', completed)
+    completed = formatAsSeries('Completed', 'hsl(100, 70%, 50%)', completed)
         
 
     return [distribution, administered, initiated, completed]
