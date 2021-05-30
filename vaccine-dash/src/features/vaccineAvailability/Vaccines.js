@@ -8,12 +8,11 @@ import { activeRegionCode } from '../regionSelector/regionSlice'
 import { fetchAvailabilityData } from './vaccineSlice'
 
 const headers = [
-    { field: 'name', headerName: 'Name', width: 300 },
+    { field: 'name', headerName: 'Name', width: 240 },
     { field: 'provider', headerName: 'Provider', width: 130 },
-    { field: 'address', headerName: 'Address', width: 280 },
+    { field: 'address', headerName: 'Address', width: 200 },
     { field: 'city', headerName: 'City', width: 130 },
-    { field: 'state', headerName: 'State', width: 120 },
-    { field: 'appointments', headerName: 'Appointments Available', width: 300 }
+    { field: 'appointments', headerName: '# Appointments', width: 190 }
 ]
 
 function AvailableVaccines() {

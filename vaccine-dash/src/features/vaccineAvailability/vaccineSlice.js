@@ -9,7 +9,6 @@ const initialState = {
 
 const states_endpoint = `https://www.vaccinespotter.org/api/v0/states/`
 
-// Makes API call and processes response
 export const fetchAvailabilityData = createAsyncThunk('vaccines/fetchData', async (region=null) => {
     let selectedRegion = region ? region : 'states'
 
@@ -26,7 +25,6 @@ const extractData = feature => {
         name,
         address,
         city,
-        state,
         carries_vaccine,
         appointments,
         provider,
@@ -34,7 +32,7 @@ const extractData = feature => {
         id
     } = feature
     
-    return {name, address, city, state, carries_vaccine, appointments, provider, url, id}
+    return {name, address, city, carries_vaccine, appointments, provider, url, id}
 }
 
 export const vaccineSlice = createSlice({
