@@ -58,3 +58,67 @@ export const selectVaccineData = state => {
     
     return res.filter(d => typeof d.vaccinesDistributed === 'number')
 }
+
+export const allLineChartData = state => {
+    const actualsTimeseries = state.historic.data.actualsTimeseries
+    if (actualsTimeseries === undefined) return undefined
+
+    let distribution = actualsTimeseries
+        .map(slice => ({ 
+            x: slice.date,
+            y: slice.vaccinesDistributed,
+        }))
+        .filter(lastMonth)
+    distribution = formatAsSeries('Vaccines Distributed', 'hsl(42, 70%, 50%)', distribution)
+
+    let administered = actualsTimeseries
+        .map(slice => ({
+            x: slice.date,
+            y: slice.vaccinesAdministered,
+        }))
+        .filter(lastMonth)
+    administered = formatAsSeries('Vaccines Administered', 'hsl(206, 70%, 50%)', administered)
+    
+    let initiated = actualsTimeseries
+        .map(slice => ({
+            x: slice.date,
+            y: slice.vaccinationsInitiated,
+        }))
+        .filter(lastMonth)
+    initiated = formatAsSeries('Vaccinations Initiated', 'hsl(100, 70%, 50%)', initiated)
+
+    let completed = actualsTimeseries
+        .map(slice => ({
+            x: slice.date,
+            y: slice.vaccinationsCompleted,
+        }))
+        .filter(lastMonth)
+    completed = formatAsSeries('Vaccinations Initiated', 'hsl(100, 70%, 50%)', completed)
+        
+
+    return [distribution, administered, initiated, completed]
+}
+
+const formatAsSeries = (id, color, data) => {
+    return {
+        id,
+        color,
+        data,
+    }
+}
+
+const lastMonth = d =>  {
+    const start = new Date()
+    start.setMonth(start.getMonth() - 1)
+    return new Date(d.x).getTime() > start.getTime()
+}
+// const data = {
+//     "id": "japan",
+//     "color": "hsl(42, 70%, 50%)",
+//     "data": [
+//       {
+//         "x": 0,
+//         "y": 258
+//       },
+//     ],
+// }
