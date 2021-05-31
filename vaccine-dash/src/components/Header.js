@@ -9,7 +9,7 @@ const Header = () => {
     // const currentRoute = useHistory().location.pathname.toLowerCase();
     return (
         <div className = "topnav">     
-            <h1 className="bar-item left">Covid-19 Vaccination Tracker</h1>
+            <h1 className="headertitle bar-item left">Covid-19 Vaccination Tracker</h1>
             <div className="bar-item right">
                 <NavLink activeClassName="active" className={"bar-item right"} to='/home'>
                     <Home/>
