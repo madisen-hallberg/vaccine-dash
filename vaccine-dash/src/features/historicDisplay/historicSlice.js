@@ -59,66 +59,47 @@ export const selectVaccineData = state => {
     return res.filter(d => typeof d.vaccinesDistributed === 'number')
 }
 
+const vaccFields = [
+    {field: 'vaccinesDistributed', color: 'hsl(42, 70%, 50%)', label: 'Distributed'},
+    {field: 'vaccinesAdministered', color: 'hsl(206, 70%, 50%)', label: 'Administered'},
+    {field: 'vaccinationsInitiated', color: 'hsl(100, 70%, 50%)', label: 'Initiated'},
+    {field: 'vaccinationsCompleted', color: 'hsl(326, 70%, 50%)', label: 'Completed'},
+]
+
 export const allLineChartData = state => {
-    const actualsTimeseries = state.historic.data.actualsTimeseries
-    if (actualsTimeseries === undefined) return undefined
+    const vaccineTimeseries = selectVaccineData(state)
+    if (vaccineTimeseries === undefined)
+        return undefined
 
-    let distribution = actualsTimeseries
-        .map(slice => ({ 
-            x: slice.date,
-            y: slice.vaccinesDistributed,
-        }))
-        .filter(lastMonth)
-    distribution = formatAsSeries('Distributed', 'hsl(42, 70%, 50%)', distribution)
-
-    let administered = actualsTimeseries
-        .map(slice => ({
-            x: slice.date,
-            y: slice.vaccinesAdministered,
-        }))
-        .filter(lastMonth)
-    administered = formatAsSeries('Administered', 'hsl(206, 70%, 50%)', administered)
-    
-    let initiated = actualsTimeseries
-        .map(slice => ({
-            x: slice.date,
-            y: slice.vaccinationsInitiated,
-        }))
-        .filter(lastMonth)
-    initiated = formatAsSeries('Initiated', 'hsl(100, 70%, 50%)', initiated)
-
-    let completed = actualsTimeseries
-        .map(slice => ({
-            x: slice.date,
-            y: slice.vaccinationsCompleted,
-        }))
-        .filter(lastMonth)
-    completed = formatAsSeries('Completed', 'hsl(100, 70%, 50%)', completed)
-        
-
-    return [distribution, administered, initiated, completed]
+    return vaccFields.map(z => {
+        const aggregates = monthlyAggregate(vaccineTimeseries, z.field)
+        return formatAsNivoLineData(z.label, z.color, aggregates)
+    })
 }
 
-const formatAsSeries = (id, color, data) => {
-    return {
-        id,
-        color,
-        data,
+const monthlyAggregate = (timeseries, field) => {
+    let aggregated = timeseries
+        .map(slice => ({
+            x: slice.date,
+            y: slice[field],
+        }))
+    aggregated = aggregated.reduce(aggregateMonths, {})
+    // Reformat back to series
+    return Object.keys(aggregated).map(m => ({ x: m, y: aggregated[m] }))
+}
+
+const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
+const aggregateMonths = (acc, pt) => {
+    const date = new Date(pt.x)
+    const month = `${MONTHS[date.getMonth()]}-${date.getFullYear()}`
+    if (month in acc) {
+        acc[month] += pt.y
+    } else {
+        acc[month] = pt.y
     }
+    return acc
 }
 
-const lastMonth = d =>  {
-    const start = new Date()
-    start.setMonth(start.getMonth() - 1)
-    return new Date(d.x).getTime() > start.getTime()
+const formatAsNivoLineData = (id, color, data) => {
+    return { id, color, data, }
 }
-// const data = {
-//     "id": "japan",
-//     "color": "hsl(42, 70%, 50%)",
-//     "data": [
-//       {
-//         "x": 0,
-//         "y": 258
-//       },
-//     ],
-// }

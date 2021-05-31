@@ -11,7 +11,7 @@ export default function HistoricDisplay() {
     const dispatch = useDispatch()
     const loadStatus = useSelector(state => state.historic.status)
     const regionCode = useSelector(activeRegionCode)
-    const lineChartData = useSelector(allLineChartData)
+    let lineChartData = useSelector(allLineChartData)
 
     useEffect(() => {
         if (loadStatus === 'pending') {
@@ -20,15 +20,6 @@ export default function HistoricDisplay() {
     }, [loadStatus, dispatch, regionCode])
     
     if (lineChartData === undefined) return <CircularProgress />
-    
-    // Filter for past 3 months only
-    console.log('Distributed line chart data', lineChartData)
-
-    // let filteredData = lineChartData.filter(d => {
-    //     const startDate = new Date()
-    //     startDate.setMonth(startDate.getMonth() - 1)
-    //     return new Date(d.x).getTime() > startDate.getTime()
-    // })
 
     return (
         <div className='graphcontainer homecontainer'>
