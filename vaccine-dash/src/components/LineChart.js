@@ -1,23 +1,23 @@
-import { ResponsiveLine } from '@nivo/line'
+import { ResponsiveLineCanvas } from '@nivo/line'
 
 const LineChart = ({ data }) => {
     if (data === undefined) {
         return <p>No Data</p>
     }
     return (
-        <ResponsiveLine
+        <ResponsiveLineCanvas
             data={data}
             margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
             xScale={{ type: 'point' }}
             yScale={{ type: 'linear', min: 'auto', max: 'auto', stacked: true, reverse: false }}
-            yFormat=" >-.2f"
+            yFormat=".2s"
             axisTop={null}
             axisRight={null}
             axisBottom={{
                 orient: 'bottom',
                 tickSize: 5,
                 tickPadding: 5,
-                tickRotation: 0,
+                tickRotation: 30,
                 legend: 'Vaccination',
                 legendOffset: 36,
                 legendPosition: 'middle'
@@ -27,24 +27,23 @@ const LineChart = ({ data }) => {
                 tickSize: 5,
                 tickPadding: 5,
                 tickRotation: 0,
-                legend: 'count',
+                legend: 'Count',
                 legendOffset: -40,
                 legendPosition: 'middle'
             }}
-            pointSize={10}
+            enableGridX={false}
+            pointSize={4}
             pointColor={{ theme: 'background' }}
             pointBorderWidth={2}
             pointBorderColor={{ from: 'serieColor' }}
             pointLabelYOffset={-12}
-            useMesh={true}
+            useMesh={false}
             legends={[
                 {
-                    anchor: 'bottom-right',
+                    anchor: 'top-left',
                     direction: 'column',
                     justify: false,
-                    translateX: 100,
-                    translateY: 0,
-                    itemsSpacing: 0,
+                    translateX: 30,
                     itemDirection: 'left-to-right',
                     itemWidth: 80,
                     itemHeight: 20,
