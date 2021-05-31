@@ -40,6 +40,7 @@ export default historicSlice.reducer
 // Selectors
 export const timeSeriesData = state => state.historic.data.actualsTimeseries
 export const riskLevelsTimeseries = state => state.historic.data.riskLevelsTimeseries
+
 export const selectVaccineData = state => {
     const data = state.historic.data.actualsTimeseries
 
@@ -68,24 +69,26 @@ const vaccFields = [
 
 export const allLineChartData = state => {
     const vaccineTimeseries = selectVaccineData(state)
-    if (vaccineTimeseries === undefined)
-        return undefined
+    
+    if (vaccineTimeseries === undefined) return undefined
 
-    return vaccFields.map(z => {
-        const aggregates = monthlyAggregate(vaccineTimeseries, z.field)
+    const allTimeSeries = vaccFields.map(z => {
+        const aggregates = getMonthlyAggregate(vaccineTimeseries, z.field)
         return formatAsNivoLineData(z.label, z.color, aggregates)
     })
+
+    return allTimeSeries
 }
 
-const monthlyAggregate = (timeseries, field) => {
-    let aggregated = timeseries
+const getMonthlyAggregate = (timeseries, field) => {
+    const series = timeseries
         .map(slice => ({
             x: slice.date,
             y: slice[field],
         }))
-    aggregated = aggregated.reduce(aggregateMonths, {})
-    // Reformat back to series
-    return Object.keys(aggregated).map(m => ({ x: m, y: aggregated[m] }))
+    const aggregated = series.reduce(aggregateMonths, {})
+    const backToSeries = Object.keys(aggregated).map(m => ({ x: m, y: aggregated[m] }))
+    return backToSeries
 }
 
 const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
