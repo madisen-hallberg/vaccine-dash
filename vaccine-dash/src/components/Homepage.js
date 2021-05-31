@@ -11,6 +11,7 @@ function Home() {
         <div className="homepage">
             <div className ="column column1">
                 <div className = "homeitem">
+                    <RegionSelector />
                     <MyMap />
                 </div>
                 <div className = "container">
@@ -20,7 +21,6 @@ function Home() {
             </div>
             <div className ="column column2">
                 <div className = "homeitem">
-                    <RegionSelector />
                     <AvailableVaccines />
                 </div>
                 <div className = "homeitem">
