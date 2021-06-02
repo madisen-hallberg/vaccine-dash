@@ -1,3 +1,5 @@
+
+
 /*navbar*/
 .topnav {
   display: flex;
@@ -51,27 +53,62 @@
   box-shadow: 5px 8px 8px rgb(228, 228, 228);
   border-radius: 10px;
 }
-
-.homecontainer {
-  display: flex;
-  flex-direction: column;
-  background-color: white;
-  padding: 10px 20px;
-  padding-top: 0px;
-  margin: auto;
-  margin-bottom: 10px;
-  box-shadow: 5px 8px 8px rgb(228, 228, 228);
-  border-radius: 10px;
+@media (max-width: 450px) {
+  
+  .homecontainer {
+    display: flex;
+    margin-left: 10px;
+    flex-direction: column;
+    background-color: white;
+    padding: 10px 20px;
+    padding-top: 0px;
+    margin: auto;
+    margin-bottom: 10px;
+    box-shadow: 5px 8px 8px rgb(228, 228, 228);
+    border-radius: 10px;
+  }
+}
+@media (min-width: 451px) {
+  .homecontainer {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    padding: 10px 20px;
+    padding-top: 0px;
+    margin: auto;
+    margin-bottom: 10px;
+    box-shadow: 5px 8px 8px rgb(228, 228, 228);
+    border-radius: 10px;
+  }
+}
+@media (max-width: 450px) {
+  #region-select {
+    width: 250px;
+    height: 10px;
+    padding-bottom: 0;
+  }
+}
+@media (min-width: 451px) {
+  #region-select {
+    height: 10px;
+    padding-bottom: 0;
+  }
 }
 
-#region-select {
-  height: 10px;
-  padding-bottom: 0;
+@media (max-width: 450px) {
+  
+  .homeitem {
+    margin-right: auto;
+    width: 104%;
+  }
+}
+@media (min-width: 450px) {
+  
+  .homeitem {
+    margin-right: 20px;
+  }
 }
 
-.homeitem {
-  margin-right: 20px;
-}
 
 /*region select*/
 #region-select-label,
@@ -114,12 +151,23 @@
 }
 
 /*aboutus*/
-.container {
-  width: 100%;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  margin-top: 20px;
+@media (max-width: 450px) {
+  .container {
+    width: 232%;
+    align-items: center;
+    margin-left: 1px;
+    margin-top: 20px;
+    margin-bottom: 5px;
+  }
+}
+@media (min-width: 451px) {
+  .container {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 20px;
+  }
 }
 
 .teammate {
@@ -168,20 +216,35 @@ li {
   height: 320px;
   width: 900px;
 }
+@media (max-width: 450px) {
+  .button {
 
-/*buttons*/
-.button {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  width: 38%;
-  height: 4.5rem;
-  background-image: linear-gradient(to bottom right, #5cd3c5, #637ec9ec);
-  padding: 30px;
-  margin-right: 20px;
-  box-shadow: 5px 8px 8px rgb(228, 228, 228);
-  border-radius: 10px;
+    display: flex;
+    justify-content: space-around;
+    width: 38%;
+    height: 4.5rem;
+    background-image: linear-gradient(to bottom right, #5cd3c5, #637ec9ec);
+    padding: 30px;
+    margin-left: -11px;
+    margin-bottom: 5px;
+    box-shadow: 5px 8px 8px rgb(228, 228, 228);
+    border-radius: 10px;
+  }
 }
+  @media (min-width: 451px) {
+    .button {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      width: 38%;
+      height: 4.5rem;
+      background-image: linear-gradient(to bottom right, #5cd3c5, #637ec9ec);
+      padding: 30px;
+      margin-right: 20px;
+      box-shadow: 5px 8px 8px rgb(228, 228, 228);
+      border-radius: 10px;
+    }
+  }
 
 .button:hover{
     border: solid;
